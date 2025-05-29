@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxxPe - Simplify Your Payments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <style>
+        /* Custom Cursor */
+        * {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%234F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>') 12 12, auto;
+        }
+
+        /* Custom Selection */
+        ::selection {
+            background: #4F46E5;
+            color: white;
+        }
+
+        /* Enhanced Responsiveness */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .hero-section {
+                padding: 1rem;
+                background-image: none !important;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            .feature-card {
+                margin: 0.5rem 0;
+                padding: 1rem;
+            }
+
+            .testimonial-card {
+                width: 280px;
+                padding: 1rem;
+            }
+
+            .faq-item {
+                margin: 0.5rem 0;
+            }
+
+            .faq-item label {
+                padding: 0.75rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: 1.75rem;
+            }
+
+            .feature-card {
+                padding: 0.75rem;
+            }
+
+            .testimonial-card {
+                width: 260px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-buttons button {
+                width: 100%;
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #4F46E5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .back-to-top i {
+            font-size: 1.25rem;
+        }
+
+        /* Container for better content width control */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Ensure images are responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Better spacing for mobile */
+        .section {
+            padding: 3rem 1rem;
+        }
+
+        /* Adjust grid layouts for mobile */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .step-connector {
+            position: relative;
+        }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background-color: #e5e7eb;
+            z-index: 0;
+        }
+        .step-connector:last-child::after {
+            display: none;
+        }
+        .faq-item input[type="checkbox"] {
+            display: none;
+        }
+        .faq-item input[type="checkbox"] + label .icon-plus {
+            display: block;
+        }
+        .faq-item input[type="checkbox"] + label .icon-minus {
+            display: none;
+        }
+        .faq-item input[type="checkbox"]:checked + label .icon-plus {
+            display: none;
+        }
+        .faq-item input[type="checkbox"]:checked + label .icon-minus {
+            display: block;
+        }
+        .faq-item input[type="checkbox"] ~ .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item input[type="checkbox"]:checked ~ .faq-content {
+            max-height: 1000px;
+        }
+        .testimonial-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .cta-gradient {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4F46E5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Flip Card Animation */
+        .flip-card {
+            perspective: 1000px;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 50%;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Enhanced FAQ Animations */
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .faq-content {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        
+        .faq-item input[type="checkbox"]:checked ~ .faq-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .faq-item input[type="checkbox"] + label .icon-plus,
+        .faq-item input[type="checkbox"] + label .icon-minus {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item input[type="checkbox"]:checked + label .icon-plus {
+            transform: rotate(45deg);
+        }
+        
+        .faq-item input[type="checkbox"]:checked + label .icon-minus {
+            transform: rotate(0deg);
+        }
+
+        /* Testimonial Slider */
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimonial-slider:hover {
+            scroll-behavior: auto;
+        }
+        
+        .testimonial-card {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Partner Slider Animation */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .partner-track {
+            animation: scroll 30s linear infinite;
+        }
+
+        .partner-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* App Store Buttons */
+        .app-store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .app-store-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* Navbar Animation */
+        .navbar {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar.hide {
+            transform: translateY(-100%);
+        }
+
+        /* Fix for horizontal scroll */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Footer Icons Fix */
+        .footer-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .footer-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Payment Icons Fix */
+        .payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .payment-icon {
+            width: 48px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Career Section Styles */
+        .job-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Contact Form Styles */
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.1);
+        }
+
+        /* Footer Styles */
+        .app-store-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .footer-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-icon {
+            width: 3rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .payment-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .app-store-buttons {
+                margin-top: 1rem;
+            }
+
+            .footer-icons {
+                gap: 1rem;
+            }
+
+            .footer-icon {
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .payment-icons {
+                gap: 1rem;
+            }
+
+            .payment-icon {
+                width: 2.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-icons {
+                justify-content: center;
+            }
+
+            .payment-icons {
+                justify-content: center;
+            }
+        }
+
+        /* Hero Section Styles */
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.1) 1px, transparent 1px),
+                            radial-gradient(circle at 75% 75%, rgba(79, 70, 229, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .typing-effect {
+            overflow: hidden;
+            border-right: 2px solid #4F46E5;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #4F46E5 }
+        }
+
+        /* Responsive Hero Section */
+        @media (max-width: 768px) {
+            .gradient-bg {
+                padding: 6rem 1rem;
+            }
+
+            .gradient-bg h1 {
+                font-size: 2.5rem;
+            }
+
+            .gradient-bg p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gradient-bg {
+                padding: 4rem 1rem;
+            }
+
+            .gradient-bg h1 {
+                font-size: 2rem;
+            }
+
+            .gradient-bg p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Logo Font Style */
+        .logo-text {
+            font-family: 'Pacifico', cursive;
+            font-weight: 700;
+        }
+
+        /* Shimmering Text Effect */
+        .shimmer {
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.1);
+            background: linear-gradient(90deg, #000000, #fff, #000);
+            background-size: 80% 100%;
+            background-repeat: no-repeat;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -500% 0;
+            }
+            100% {
+                background-position: 500% 0;
+            }
+        }
+
+        /* Responsive Shimmer */
+        @media (max-width: 768px) {
+            .shimmer {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .shimmer {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl logo-text text-primary">MaxxPe</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-medium">Features</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary font-medium">About</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary font-medium">FAQ</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+                    <button class="bg-primary text-white px-5 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Get Started</button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700 hover:text-primary">
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <i class="ri-menu-line ri-lg"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden gradient-bg">
+        <!-- Particles -->
+        <div class="particles"></div>
+        
+        <div class="container mx-auto px-6 py-20 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        <span>Hi, I'm Ashish Singh</span>
+                        <div class="typing-effect text-primary mt-2">CEO of <span class="shimmer">MaxxPe</span></div>
+                    </h1>
+                    
+                    <p class="text-xl text-black/90 mb-8 max-w-lg">
+                        "MaxxPe empowers individuals & businesses with lightning-fast digital transactions and secure payment solutions – anytime, anywhere."
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#" class="px-8 py-3 bg-white text-primary font-semibold rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap flex items-center justify-center">
+                            <i class="ri-download-line mr-2"></i> Download CV
+                        </a>
+                        <a href="#contact" class="px-8 py-3 bg-primary text-white font-semibold rounded-button shadow-lg hover:shadow-xl transition-all whitespace-nowrap flex items-center justify-center">
+                            <i class="ri-mail-line mr-2"></i> Contact Me
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20portrait%20photograph%20of%20a%20young%20male%20creative%20developer%20with%20a%20friendly%20smile%2C%20modern%20haircut%2C%20against%20a%20gradient%20purple%20blue%20background%2C%20high%20quality%2C%20professional%20lighting%2C%20studio%20shot%2C%20looking%20directly%20at%20camera&width=400&height=400&seq=1&orientation=squarish" alt="Shubham Prajapati" class="w-full h-full object-cover object-top">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="scrollToTop()">
+        <span>Back to Top</span>
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <script>
+        // Back to Top Button Functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" class="shimmer">Powerful Features</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover why thousands of users choose MaxxPe for their payment needs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-shield-check-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Secure Payments</h3>
+                    <p class="text-gray-600 text-center">Bank-level encryption and advanced security protocols to keep your money and data safe at all times.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-flashlight-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Instant Transfers</h3>
+                    <p class="text-gray-600 text-center">Send and receive money in seconds, not days. Real-time transfers to anyone, anywhere.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-line-chart-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Expense Tracking</h3>
+                    <p class="text-gray-600 text-center">Automatically categorize and track your spending with detailed analytics and monthly reports.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-briefcase-4-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Business Tools</h3>
+                    <p class="text-gray-600 text-center">Specialized features for businesses including invoicing, payroll, and vendor management solutions.</p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-bill-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Bill Pay</h3>
+                    <p class="text-gray-600 text-center">Pay all your utility bills, subscriptions, and recurring payments from one convenient place.</p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 feature-card">
+                    <div class="w-14 h-14 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-qr-code-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">UPI & QR Payments</h3>
+                    <p class="text-gray-600 text-center">Seamless UPI integration and QR code scanning for quick and hassle-free transactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Getting started with MaxxPe is quick and easy. Just follow these simple steps.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-12 md:space-y-0">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center max-w-xs step-connector">
+                    <div class="w-20 h-20 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 relative z-10">
+                        <span class="text-primary font-bold text-2xl">1</span>
+                    </div>
+                    <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center mb-6">
+                        <i class="ri-download-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Download</h3>
+                    <p class="text-gray-600 text-center">Download the MaxxPe app from your device's app store. Available for iOS and Android.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center max-w-xs step-connector">
+                    <div class="w-20 h-20 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 relative z-10">
+                        <span class="text-primary font-bold text-2xl">2</span>
+                    </div>
+                    <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center mb-6">
+                        <i class="ri-user-add-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Sign Up</h3>
+                    <p class="text-gray-600 text-center">Create your account with basic information and verify your identity securely.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center max-w-xs">
+                    <div class="w-20 h-20 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 relative z-10">
+                        <span class="text-primary font-bold text-2xl">3</span>
+                    </div>
+                    <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center mb-6">
+                        <i class="ri-rocket-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Start Using</h3>
+                    <p class="text-gray-600 text-center">Link your bank accounts or cards and start making payments instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 md:pr-12 mb-12 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why Choose MaxxPe</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                                <i class="ri-check-line text-white ri-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">24/7 Customer Support</h3>
+                                <p class="mt-1 text-gray-600">Our dedicated support team is available round-the-clock to assist you with any issues or questions.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                                <i class="ri-check-line text-white ri-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Made for India</h3>
+                                <p class="mt-1 text-gray-600">Designed specifically for Indian users with support for local payment methods and compliance with RBI regulations.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                                <i class="ri-check-line text-white ri-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Easy Integration</h3>
+                                <p class="mt-1 text-gray-600">Seamlessly integrates with your existing banking apps and financial services for a unified experience.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                                <i class="ri-check-line text-white ri-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Zero Hidden Fees</h3>
+                                <p class="mt-1 text-gray-600">Transparent pricing with no hidden charges. Know exactly what you're paying for every transaction.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center mt-1">
+                                <i class="ri-check-line text-white ri-sm"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-lg font-medium text-gray-900">Rewards Program</h3>
+                                <p class="mt-1 text-gray-600">Earn points on every transaction and redeem them for exclusive offers and discounts.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <img src="https://readdy.ai/api/search-image?query=A%20modern%20smartphone%20displaying%20a%20payment%20app%20interface%20with%20transaction%20history%2C%20payment%20options%2C%20and%20a%20clean%20dashboard.%20The%20screen%20shows%20colorful%20graphs%2C%20payment%20icons%2C%20and%20a%20user-friendly%20interface.%20The%20phone%20is%20displayed%20at%20an%20angle%20against%20a%20light%20background%20with%20subtle%20abstract%20shapes.%20Professional%2C%20high-quality%203D%20rendering%20with%20realistic%20lighting%20and%20shadows.&width=600&height=800&seq=app01&orientation=portrait" alt="MaxxPe App Interface" class="rounded-lg shadow-xl mx-auto object-cover object-top">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About MaxxPe</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">We're on a mission to revolutionize digital payments in India by making them more accessible, secure, and user-friendly for everyone.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-sm mb-12">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/3 mb-8 md:mb-0">
+                        <img src="https://readdy.ai/api/search-image?query=A%20professional%20Indian%20businessman%20in%20his%2040s%20wearing%20a%20modern%20business%20suit%2C%20standing%20confidently%20with%20arms%20crossed.%20He%20has%20a%20warm%2C%20approachable%20smile%20and%20is%20photographed%20against%20a%20neutral%20background.%20The%20image%20should%20be%20a%20professional%20headshot%20style%20with%20soft%2C%20flattering%20lighting.%20High-quality%20professional%20portrait.&width=400&height=400&seq=founder01&orientation=squarish" alt="Founder" class="rounded-full w-48 h-48 object-cover object-top mx-auto">
+                    </div>
+                    <div class="w-full md:w-2/3 md:pl-12">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">A Message from Our Founder</h3>
+                        <p class="text-gray-600 mb-4">"When we started MaxxPe in 2022, we had a simple goal: to create a payment solution that works for everyone. Whether you're a small business owner, a freelancer, or just someone who wants to split a bill with friends, we wanted to make digital payments accessible, secure, and effortless."</p>
+                        <p class="text-gray-600 mb-4">"Today, we're proud to serve millions of users across India, helping them manage their finances with confidence and ease. But we're just getting started. Our vision is to build the most trusted financial ecosystem in the country, one that empowers every Indian to participate in the digital economy."</p>
+                        <p class="text-gray-900 font-medium">Ashish Singh, Founder & CEO</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-user-heart-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-2">5M+</h3>
+                    <p class="text-gray-600">Active Users</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-exchange-funds-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-2">₹500Cr+</h3>
+                    <p class="text-gray-600">Monthly Transactions</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+                    <div class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="ri-store-2-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-2">50,000+</h3>
+                    <p class="text-gray-600">Merchant Partners</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what people love about MaxxPe.</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20Indian%20woman%20in%20her%2030s%20with%20a%20friendly%20smile%2C%20wearing%20business%20casual%20attire.%20The%20photo%20should%20be%20well-lit%20with%20a%20neutral%20background%2C%20showing%20just%20her%20head%20and%20shoulders.%20High-quality%20professional%20portrait%20with%20natural%2C%20flattering%20lighting.&width=100&height=100&seq=test01&orientation=squarish" alt="Priya Sharma" class="w-12 h-12 rounded-full object-cover object-top">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Priya Sharma</h4>
+                            <p class="text-sm text-gray-600">Freelance Designer</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"MaxxPe has completely transformed how I manage client payments. The invoicing feature is a game-changer, and I love how I can track all my expenses in one place."</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20Indian%20man%20in%20his%2040s%20with%20a%20confident%20smile%2C%20wearing%20a%20business%20shirt.%20The%20photo%20should%20be%20well-lit%20with%20a%20neutral%20background%2C%20showing%20just%20his%20head%20and%20shoulders.%20High-quality%20professional%20portrait%20with%20natural%2C%20flattering%20lighting.&width=100&height=100&seq=test02&orientation=squarish" alt="Rajesh Patel" class="w-12 h-12 rounded-full object-cover object-top">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Rajesh Patel</h4>
+                            <p class="text-sm text-gray-600">Small Business Owner</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"As a small business owner, MaxxPe has been invaluable. The business tools help me manage payroll, vendor payments, and customer transactions all in one place."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20young%20Indian%20woman%20in%20her%2020s%20with%20a%20bright%20smile%2C%20wearing%20casual%20modern%20attire.%20The%20photo%20should%20be%20well-lit%20with%20a%20neutral%20background%2C%20showing%20just%20her%20head%20and%20shoulders.%20High-quality%20professional%20portrait%20with%20natural%2C%20flattering%20lighting.&width=100&height=100&seq=test03&orientation=squarish" alt="Ananya Gupta" class="w-12 h-12 rounded-full object-cover object-top">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Ananya Gupta</h4>
+                            <p class="text-sm text-gray-600">College Student</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-half-fill text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"MaxxPe makes splitting bills with roommates so easy! We use it for rent, groceries, and utilities. The expense tracking helps me stay on budget."</p>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20young%20Indian%20woman%20in%20her%2020s%20with%20a%20bright%20smile%2C%20wearing%20casual%20modern%20attire.%20The%20photo%20should%20be%20well-lit%20with%20a%20neutral%20background%2C%20showing%20just%20her%20head%20and%20shoulders.%20High-quality%20professional%20portrait%20with%20natural%2C%20flattering%20lighting.&width=100&height=100&seq=test03&orientation=squarish" alt="Ananya Gupta" class="w-12 h-12 rounded-full object-cover object-top">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Vikram Mehta</h4>
+                            <p class="text-sm text-gray-600">E-commerce Entrepreneur</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"MaxxPe's e-commerce platform has helped me scale my business. The integrated payment system and inventory management are top-notch!"</p>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20young%20Indian%20woman%20in%20her%2020s%20with%20a%20bright%20smile%2C%20wearing%20casual%20modern%20attire.%20The%20photo%20should%20be%20well-lit%20with%20a%20neutral%20background%2C%20showing%20just%20her%20head%20and%20shoulders.%20High-quality%20professional%20portrait%20with%20natural%2C%20flattering%20lighting.&width=100&height=100&seq=test03&orientation=squarish" alt="Ananya Gupta" class="w-12 h-12 rounded-full object-cover object-top">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Meera Kapoor</h4>
+                            <p class="text-sm text-gray-600">Online Store Owner</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                        <i class="ri-star-fill text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"The MaxxPe shopping platform has been a game-changer for my online store. The seamless payment integration and customer analytics are fantastic!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-lg text-gray-600">Find answers to common questions about MaxxPe.</p>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                    <input type="checkbox" id="faq-1" class="faq-toggle">
+                    <label for="faq-1" class="flex justify-between items-center p-6 cursor-pointer">
+                        <span class="text-lg font-medium text-gray-900">Is MaxxPe safe to use?</span>
+                        <div class="icon-plus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line ri-lg text-gray-500"></i>
+                        </div>
+                        <div class="icon-minus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-subtract-line ri-lg text-gray-500"></i>
+                        </div>
+                    </label>
+                    <div class="faq-content px-6 pb-6">
+                        <p class="text-gray-600">Yes, MaxxPe employs bank-level encryption and security protocols to protect your data and transactions. We are fully compliant with RBI regulations and undergo regular security audits. Your money and personal information are always protected with us.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                    <input type="checkbox" id="faq-2" class="faq-toggle">
+                    <label for="faq-2" class="flex justify-between items-center p-6 cursor-pointer">
+                        <span class="text-lg font-medium text-gray-900">What are the fees for using MaxxPe?</span>
+                        <div class="icon-plus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line ri-lg text-gray-500"></i>
+                        </div>
+                        <div class="icon-minus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-subtract-line ri-lg text-gray-500"></i>
+                        </div>
+                    </label>
+                    <div class="faq-content px-6 pb-6">
+                        <p class="text-gray-600">Basic transactions like sending money to friends, paying bills, and making UPI payments are completely free. For premium features like international transfers and business tools, we charge a small fee that is clearly displayed before you confirm any transaction. There are no hidden charges.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                    <input type="checkbox" id="faq-3" class="faq-toggle">
+                    <label for="faq-3" class="flex justify-between items-center p-6 cursor-pointer">
+                        <span class="text-lg font-medium text-gray-900">How do I get started with MaxxPe?</span>
+                        <div class="icon-plus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line ri-lg text-gray-500"></i>
+                        </div>
+                        <div class="icon-minus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-subtract-line ri-lg text-gray-500"></i>
+                        </div>
+                    </label>
+                    <div class="faq-content px-6 pb-6">
+                        <p class="text-gray-600">Getting started is easy! Download the app from your device's app store, sign up with your phone number and email, complete a quick KYC verification, and link your bank account or cards. The entire process takes less than 5 minutes, and you'll be ready to make your first transaction.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                    <input type="checkbox" id="faq-4" class="faq-toggle">
+                    <label for="faq-4" class="flex justify-between items-center p-6 cursor-pointer">
+                        <span class="text-lg font-medium text-gray-900">Can I use MaxxPe for my business?</span>
+                        <div class="icon-plus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line ri-lg text-gray-500"></i>
+                        </div>
+                        <div class="icon-minus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-subtract-line ri-lg text-gray-500"></i>
+                        </div>
+                    </label>
+                    <div class="faq-content px-6 pb-6">
+                        <p class="text-gray-600">Absolutely! MaxxPe offers a comprehensive suite of business tools including invoicing, payroll management, vendor payments, and detailed financial analytics. We have tailored solutions for businesses of all sizes, from freelancers to large enterprises. You can upgrade to a business account directly from the app.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white rounded-lg shadow-sm overflow-hidden">
+                    <input type="checkbox" id="faq-5" class="faq-toggle">
+                    <label for="faq-5" class="flex justify-between items-center p-6 cursor-pointer">
+                        <span class="text-lg font-medium text-gray-900">How does the rewards program work?</span>
+                        <div class="icon-plus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line ri-lg text-gray-500"></i>
+                        </div>
+                        <div class="icon-minus w-6 h-6 flex items-center justify-center">
+                            <i class="ri-subtract-line ri-lg text-gray-500"></i>
+                        </div>
+                    </label>
+                    <div class="faq-content px-6 pb-6">
+                        <p class="text-gray-600">Our rewards program lets you earn points on every transaction you make through MaxxPe. These points can be redeemed for cashback, discounts at partner merchants, or exclusive offers. The more you use MaxxPe, the more rewards you unlock. You can track your points and available rewards in the app's Rewards section.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 cta-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Smart Payments?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join millions of satisfied users who have simplified their financial life with MaxxPe.</p>
+            
+            <button class="bg-white text-primary px-8 py-4 rounded-button font-medium hover:bg-gray-100 transition-all mb-8 whitespace-nowrap">
+                Download Now
+            </button>
+            
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="flex items-center bg-black bg-opacity-20 px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-apple-fill ri-lg"></i>
+                    </div>
+                    <div class="ml-2 text-left">
+                        <p class="text-xs">Download on the</p>
+                        <p class="text-lg font-medium">App Store</p>
+                    </div>
+                </a>
+                <a href="#" class="flex items-center bg-black bg-opacity-20 px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <i class="ri-google-play-fill ri-lg"></i>
+                    </div>
+                    <div class="ml-2 text-left">
+                        <p class="text-xs">Get it on</p>
+                        <p class="text-lg font-medium">Google Play</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Section -->
+    <section id="careers" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Join Our Team</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Job Card 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-xl font-semibold mb-4">Senior Software Engineer</h3>
+                    <p class="text-gray-600 mb-4">Join our core team to build the future of digital payments.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Full-time</span>
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Bangalore</span>
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">5+ years</span>
+                    </div>
+                    <button class="w-full bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-all">Apply Now</button>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-xl font-semibold mb-4">Product Manager</h3>
+                    <p class="text-gray-600 mb-4">Lead our product development and shape the future of MaxxPe.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Full-time</span>
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Remote</span>
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">3+ years</span>
+                    </div>
+                    <button class="w-full bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-all">Apply Now</button>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+                    <h3 class="text-xl font-semibold mb-4">UX/UI Designer</h3>
+                    <p class="text-gray-600 mb-4">Create beautiful and intuitive interfaces for our users.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Full-time</span>
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Mumbai</span>
+                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">2+ years</span>
+                    </div>
+                    <button class="w-full bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-all">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get in Touch</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="name">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="email">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="subject">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="message">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="ri-map-pin-line text-primary text-xl mt-1"></i>
+                                <div class="ml-4">
+                                    <h4 class="font-medium">Address</h4>
+                                    <p class="text-gray-600">123 Tech Park, Koramangala<br>Bangalore, Karnataka 560034</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="ri-phone-line text-primary text-xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="text-gray-600">+91 80 4567 8900</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="ri-mail-line text-primary text-xl"></i>
+                                <div class="ml-4">
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-gray-600">support@maxxpe.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                        <div class="footer-icons">
+                            <a href="#" class="footer-icon text-gray-400 hover:text-primary transition-colors">
+                                <i class="ri-facebook-fill ri-xl"></i>
+                            </a>
+                            <a href="#" class="footer-icon text-gray-400 hover:text-primary transition-colors">
+                                <i class="ri-twitter-x-fill ri-xl"></i>
+                            </a>
+                            <a href="#" class="footer-icon text-gray-400 hover:text-primary transition-colors">
+                                <i class="ri-instagram-fill ri-xl"></i>
+                            </a>
+                            <a href="#" class="footer-icon text-gray-400 hover:text-primary transition-colors">
+                                <i class="ri-linkedin-fill ri-xl"></i>
+                            </a>
+                            <a href="#" class="footer-icon text-gray-400 hover:text-primary transition-colors">
+                                <i class="ri-youtube-fill ri-xl"></i>
+                            </a>
+                            <a href="#" class="footer-icon text-gray-400 hover:text-primary transition-colors">
+                                <i class="ri-telegram-fill ri-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <a href="#" class="text-2xl logo-text text-white mb-6 block">MaxxPe</a>
+
+                    <p class="text-gray-400 mb-6">Simplifying digital payments and e-commerce for everyone in India.</p>
+                    <!-- <div class="app-store-buttons">
+                        <a href="#" class="flex items-center bg-black bg-opacity-20 px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                            <i class="ri-apple-fill ri-xl mr-2"></i>
+                            <div class="text-left">
+                                <p class="text-xs">Download on the</p>
+                                <p class="text-lg font-medium">App Store</p>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center bg-black bg-opacity-20 px-6 py-3 rounded-lg hover:bg-opacity-30 transition-all">
+                            <i class="ri-google-play-fill ri-xl mr-2"></i>
+                            <div class="text-left">
+                                <p class="text-xs">Get it on</p>
+                                <p class="text-lg font-medium">Google Play</p>
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line text-gray-400 mt-1"></i>
+                            <span class="ml-3 text-gray-400">123 Tech Park, Koramangala<br>Bangalore, Karnataka 560034</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line text-gray-400"></i>
+                            <span class="ml-3 text-gray-400">+91 80 4567 8900</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line text-gray-400"></i>
+                            <span class="ml-3 text-gray-400">support@maxxpe.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Stay Updated</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email address" class="bg-gray-800 text-white px-4 py-2 rounded-l-button w-full border-none focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-r-button whitespace-nowrap">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 MaxxPe. All rights reserved. Made with ❤️ in India</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Security</a>
+                    </div>
+                </div>
+
+                <div class="payment-icons">
+                    <div class="payment-icon">
+                        <i class="ri-visa-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-mastercard-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-paypal-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-amazon-pay-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-google-pay-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-apple-pay-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-phone-pay-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-bhim-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-paytm-fill ri-xl text-gray-400"></i>
+                    </div>
+                    <div class="payment-icon">
+                        <i class="ri-rupay-fill ri-xl text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden button');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'md:hidden fixed inset-0 bg-white z-50 transform translate-x-full transition-transform duration-300 ease-in-out';
+            mobileMenu.innerHTML = `
+                <div class="flex justify-between items-center p-4 border-b">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-primary">MaxxPe</a>
+                    <button class="text-gray-700 hover:text-primary">
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <i class="ri-close-line ri-lg"></i>
+                        </div>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <nav class="space-y-4">
+                        <a href="#" class="block text-gray-700 hover:text-primary font-medium py-2">Home</a>
+                        <a href="#features" class="block text-gray-700 hover:text-primary font-medium py-2">Features</a>
+                        <a href="#about" class="block text-gray-700 hover:text-primary font-medium py-2">About</a>
+                        <a href="#faq" class="block text-gray-700 hover:text-primary font-medium py-2">FAQ</a>
+                        <a href="#contact" class="block text-gray-700 hover:text-primary font-medium py-2">Contact</a>
+                        <button class="mt-4 w-full bg-primary text-white px-5 py-2 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap">Get Started</button>
+                    </nav>
+                </div>
+            `;
+            document.body.appendChild(mobileMenu);
+            
+            const closeButton = mobileMenu.querySelector('button');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.add('translate-x-full');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('translate-x-full');
+                });
+            });
+        });
+    </script>
+
+    <script id="faq-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    const content = this.nextElementSibling.nextElementSibling;
+                    if (this.checked) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = '0';
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="smooth-scroll-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="testimonial-slider-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.testimonial-slider');
+            let isHovered = false;
+            let scrollInterval;
+
+            function startAutoScroll() {
+                if (!isHovered) {
+                    scrollInterval = setInterval(() => {
+                        if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+                            slider.scrollLeft = 0;
+                        } else {
+                            slider.scrollLeft += 1;
+                        }
+                    }, 30);
+                }
+            }
+
+            function stopAutoScroll() {
+                clearInterval(scrollInterval);
+            }
+
+            slider.addEventListener('mouseenter', () => {
+                isHovered = true;
+                stopAutoScroll();
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isHovered = false;
+                startAutoScroll();
+            });
+
+            // Clone cards for infinite scroll
+            const cards = slider.querySelectorAll('.testimonial-card');
+            cards.forEach(card => {
+                const clone = card.cloneNode(true);
+                slider.appendChild(clone);
+            });
+
+            startAutoScroll();
+        });
+    </script>
+
+    <script>
+        // Navbar Hide/Show on Scroll
+        let lastScroll = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                navbar.classList.remove('hide');
+                return;
+            }
+
+            if (currentScroll > lastScroll && !navbar.classList.contains('hide')) {
+                navbar.classList.add('hide');
+            } else if (currentScroll < lastScroll && navbar.classList.contains('hide')) {
+                navbar.classList.remove('hide');
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+
+    <script>
+        // ... existing scripts ...
+
+        // Career Section
+        document.querySelectorAll('.job-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const jobTitle = this.closest('.job-card').querySelector('h3').textContent;
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/apply';
+                form.innerHTML = `
+                    <input type="hidden" name="job_title" value="${jobTitle}">
+                    <input type="hidden" name="source" value="careers_page">
+                `;
+                document.body.appendChild(form);
+                form.submit();
+            });
+        });
+
+        // Contact Form
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Show loading state
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                
+                // Simulate form submission (replace with actual API call)
+                setTimeout(() => {
+                    // Reset form
+                    this.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'mt-4 p-4 bg-green-100 text-green-700 rounded-lg';
+                    successMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                    this.appendChild(successMessage);
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                }, 1500);
+            });
+        }
+
+        // Form validation
+        const inputs = document.querySelectorAll('#contact form input, #contact form textarea');
+        inputs.forEach(input => {
+            input.addEventListener('invalid', function(e) {
+                e.preventDefault();
+                this.classList.add('border-red-500');
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.validity.valid) {
+                    this.classList.remove('border-red-500');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
